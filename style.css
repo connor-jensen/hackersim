@@ -1,0 +1,77 @@
+body{
+	background:#000000;
+	color:#00FF00;
+	font-family:monospace;
+}
+
+.good{
+	position:fixed;
+	top:200px;
+	background:#333;
+	padding:20px;
+	border:1px solid #999;
+	width:300px;
+	left:50%;
+	margin-left:-150px;
+	text-align:center;
+}
+
+.bad{
+	position:fixed;
+	top:200px;
+	color:#F00;
+	background:#511;
+	padding:20px;
+	border:1px solid #F00;
+	width:300px;
+	left:50%;
+	margin-left:-150px;
+	text-align:center;
+}
+
+.blinking-cursor {
+  float:left;
+  font-weight: 100;
+  /*color: #2E3D48;*/
+  -webkit-animation: 1s blink step-end infinite;
+  -moz-animation: 1s blink step-end infinite;
+  -ms-animation: 1s blink step-end infinite;
+  -o-animation: 1s blink step-end infinite;
+  animation: 1s blink step-end infinite;
+}
+
+@keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #00FF00;
+  }
+}
+
+@-moz-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #00FF00;
+  }
+}
+
+@-webkit-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #00FF00;
+  }
+}
+
+@-o-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #00FF00;
+  }
+}
