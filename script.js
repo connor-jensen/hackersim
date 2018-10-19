@@ -11,7 +11,7 @@ app.controller('mainCtrl', ['$scope', '$http', function($scope, $http) {
     console.log(file);
   })
 
-  setInterval(function() { removeNotifications() }, 8000)
+  setInterval(function() { addRandomNotification() }, 8000)
 
   function removeNotifications() {
     var elements = document.getElementsByClassName("notification");
@@ -19,6 +19,46 @@ app.controller('mainCtrl', ['$scope', '$http', function($scope, $http) {
       elements[0].parentNode.removeChild(elements[0]);
     }
   }
+  
+  function addRandomNotification() {
+    removeNotifications();
+    
+    var action = Math.floor(Math.random() * 5);
+    angular.element(document.body).prepend(events[action]);
+  }
+  
+  var events = [
+      function success() {
+        var success = angular.element("<div>ACCESS GRANTED</div>");
+        success.addClass("good");
+        success.addClass("notification");
+        return success;
+      },
+      function denied() {
+        var denied = angular.element("<div>ACCESS DENIED</div>");
+        denied.addClass("bad");
+        denied.addClass("notification");
+        return denied;
+      },
+      function bitcoin() {
+        var bitcoin = angular.element("<div>BITCOIN MINED</div>");
+        bitcoin.addClass("good");
+        bitcoin.addClass("notification");
+        return bitcoin;
+      },
+      function mainframe() {
+        var mainframe = angular.element("<div>HACKING INTO THE MAINFRAME</div>");
+        mainframe.addClass("good");
+        mainframe.addClass("notification");
+        return mainframe;
+      },
+      function detected() {
+        var detected = angular.element("<div>HACKING DETECTED!</div>");
+        detected.addClass("bad");
+        detected.addClass("notification");
+        return detected;
+      }
+    ]
 
   $scope.hack = function(event) {
     if (event.key === "+") {
@@ -29,15 +69,17 @@ app.controller('mainCtrl', ['$scope', '$http', function($scope, $http) {
     }
 
     if (event.key > '0' && event.key <= '5') {
-      var action = Math.floor(Math.random() * 5 + 1);
+      // addRandomNotification()      
+      var action = Math.floor(Math.random() * 5);
       if (action === 1) {
-        removeNotifications();
-        var success = angular.element("<div>ACCESS GRANTED</div>");
-        success.addClass("good");
-        success.addClass("notification");
-        angular.element(document.body).prepend(success);
-        var audio = new Audio('sounds/access_granted.wav');
-        audio.play();
+        
+        // removeNotifications();
+        // var success = angular.element("<div>ACCESS GRANTED</div>");
+        // success.addClass("good");
+        // success.addClass("notification");
+        // angular.element(document.body).prepend(success);
+        // var audio = new Audio('sounds/access_granted.wav');
+        // audio.play();
       }
       else if (action === 2) {
         removeNotifications();
@@ -45,8 +87,8 @@ app.controller('mainCtrl', ['$scope', '$http', function($scope, $http) {
         denied.addClass("bad");
         denied.addClass("notification");
         angular.element(document.body).prepend(denied);
-        var audio = new Audio('sounds/access_denied.wav');
-        audio.play();
+        // var audio = new Audio('sounds/access_denied.wav');
+        // audio.play();
       }
       else if (action === 3) {
         removeNotifications();
@@ -54,8 +96,8 @@ app.controller('mainCtrl', ['$scope', '$http', function($scope, $http) {
         bitcoin.addClass("good");
         bitcoin.addClass("notification");
         angular.element(document.body).prepend(bitcoin);
-        var audio = new Audio('sounds/bitcoin_mined.wav');
-        audio.play();
+        // var audio = new Audio('sounds/bitcoin_mined.wav');
+        // audio.play();
       }
       else if (action === 4) {
         removeNotifications();
@@ -63,8 +105,8 @@ app.controller('mainCtrl', ['$scope', '$http', function($scope, $http) {
         mainframe.addClass("good");
         mainframe.addClass("notification");
         angular.element(document.body).prepend(mainframe);
-        var audio = new Audio('sounds/hacking_into_mainframe.wav');
-        audio.play();
+        // var audio = new Audio('sounds/hacking_into_mainframe.wav');
+        // audio.play();
       }
       else if (action === 5) {
         removeNotifications();
@@ -72,8 +114,8 @@ app.controller('mainCtrl', ['$scope', '$http', function($scope, $http) {
         detected.addClass("bad");
         detected.addClass("notification");
         angular.element(document.body).prepend(detected);
-        var audio = new Audio('sounds/hacking_detected.wav');
-        audio.play();
+        // var audio = new Audio('sounds/hacking_detected.wav');
+        // audio.play();
       }
     }
     else if (event.key === "]") {
